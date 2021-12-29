@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Homework 5 JS</title>
+    <script>
+        function createNewUser() {
+            var Imia = prompt("Введіть ім'я");
+            var Prizvyshche = prompt("Введіть прізвище");
+            var bday = prompt("Введіть дату народження");
+            var bdaySeparation = bday.split('.');
+            let newUser = new Object;
+            newUser = {
+                    firstName: Imia, lastName: Prizvyshche,
+                    getLogin: function(){
+                        var name = this.firstName.charAt(0) + this.lastName.toLowerCase(); 
+                        return name;
+                },   
+                getAge: function(){
+                    var birth = new Date(bdaySeparation[2], 
+                    (bdaySeparation[1]), bdaySeparation[0]);
+                    var now = new Date();
+                    var age = Math.abs(now-birth);
+                    var time = Math.ceil(age/(24*60*60*1000));
+                    time = time/365;
+                    return Math.round(time);
+                },
+                getPassword: function(){
+                    var result = this.firstName.charAt(0) + this.lastName.toLowerCase() 
+                    + bdaySeparation[2];
+                    return result;
+                }
+            };
+            return newUser;
+        }
+        var rezultat = createNewUser();
+        console.log(rezultat.getLogin(),rezultat.getAge(),rezultat.getPassword());
+    </script>
+</head>
+<body>
+</body>
+</html>
